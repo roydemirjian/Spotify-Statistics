@@ -10,9 +10,12 @@ import spotipy.util as util
 from django.http import HttpResponse
 
 #Grab data from Spotify API and display it on the django website....
+import os
+#import json
+from json.decoder import JSONDecodeError
+
 
 """
-
 def index(request):
 
     client_credentials_manager = SpotifyClientCredentials(
@@ -45,8 +48,14 @@ def index(request):
     else: 
         #print "Usage: %s username" % (sys.argv[0],)
         sys.exit()
+    
+    scope = 'user-library-read'
 
-    token = util.prompt_for_user_token(username, redirect_uri = 'http://localhost:8000/info/')
+    try:
+        token = util.prompt_for_user_token(username, redirect_uri = 'http://localhost:8000/info/')
+    except(AttributeError, JSONDecodeError):
+        os.remove(f".cache-{username}")
+        token = util.prompt_for_user_token(username, redirect_uri = 'http://localhost:8000/info/')
 
     results =[]
 
@@ -63,6 +72,6 @@ def index(request):
                 playlists = None
 
 
-    return HttpResponse(results)
+    return HttpResponse("hello")
 
 
