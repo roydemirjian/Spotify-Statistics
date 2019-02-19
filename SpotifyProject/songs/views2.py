@@ -6,8 +6,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 
 client_credentials_manager = SpotifyClientCredentials(
-        client_id='03a2bd9729c1417e9754db9052b8a8bc',
-        client_secret='0c3ccfbab93842a29c283ec3d80dbe4d')
+        client_id='---------------------------------------',
+        client_secret='-------------------------------------')
 
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
